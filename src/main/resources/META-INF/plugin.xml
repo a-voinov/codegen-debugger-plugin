@@ -1,0 +1,38 @@
+<idea-plugin>
+    <id>av.debugger.codegen</id>
+    <name>Test</name>
+    <vendor email="aavoinov95@gmail.com" url="https://github.com/a-voinov">zz</vendor>
+
+    <description><![CDATA[
+    Codegen debugger plugin for Intelij IDEA<br>
+    <em>The plugin allows you to generate code that creates objects directly from the debugger.</em>
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.xdebugger</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <projectListeners>
+        <listener class="av.debugger.codegen.debug.DebugManagerListener"
+                  topic="com.intellij.xdebugger.XDebuggerManagerListener"/>
+    </projectListeners>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action id="CodegenDebuggerAction"
+                class="av.debugger.codegen.debug.DebugAction"
+                text="Generate Stub Code"
+                description="Open my test Action">
+            <add-to-group
+                    group-id="XDebugger.ValueGroup"
+                    anchor="after"
+                    relative-to-action="XDebugger.CopyName"
+            />
+        </action>
+    </actions>
+</idea-plugin>
